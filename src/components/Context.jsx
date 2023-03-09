@@ -40,8 +40,7 @@ function Content() {
     )
 }
 const WholeContent = styled.div`
-    /* margin-left: 200px; */
-    border: 2px solid red;
+ 
     width: 100%;
 `
 
@@ -54,6 +53,16 @@ const Grid = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
     place-items: center;
+
+    @media screen and (max-width: 1438px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 873px) {
+        grid-template-columns: 1fr;
+    }
+     @media screen and (max-width: 489px) {
+        padding: 20px;
+    }
 `
 
 const ContentType = styled.h1`
@@ -61,6 +70,7 @@ const ContentType = styled.h1`
         padding-left: 60px;
         padding-top: 30px;
         padding-bottom: 30px;
+        font-weight: bolder;
 
     span {
         color: #FF0000;

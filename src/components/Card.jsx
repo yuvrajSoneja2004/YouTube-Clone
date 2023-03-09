@@ -7,7 +7,7 @@ function VideoCard({ videoInfo }) {
         <Card>
             <img src={videoInfo.thumbnails.medium.url} alt="mk" />
             <div>
-                <strong>{videoInfo.title}</strong>
+                <strong>{videoInfo.title.slice(0, 80)}...</strong>
                 <br />
 
             </div>
@@ -26,7 +26,13 @@ const Card = styled.div`
     min-height: 250px;
 
     box-shadow: rgba(99, 99, 99, 0.121) 0px 2px 8px 0px;
+        @media screen and (max-width: 1001px) {
+            width: 270px;
+        }
 
+        @media screen and (max-width: 873px) {
+            width: 100%;
+        }
     img {
         border-radius: 13px;
         /* border-top-right-radius: 20px; */
