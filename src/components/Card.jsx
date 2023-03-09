@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 function VideoCard({ videoInfo }) {
 
 
-
-
+    const navigate = useNavigate();
     return (
-        <Card>
+        <Card onClick={() => {
+            navigate(`/single-video-page/video/${videoInfo.videoId}`)
+        }}>
             <img src={videoInfo.thumbnail[0].url} alt="mk" />
             <ChannelDetails>
                 <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" />
@@ -37,9 +38,14 @@ function VideoCard({ videoInfo }) {
 
 const Card = styled.div`
     width: 330px;
-
+    text-decoration: none;
+    color: black;
     border-radius: 20px;
     min-height: 250px;
+     
+    &:hover {
+        cursor: pointer;
+    }
 
     /* box-shadow: rgba(99, 99, 99, 0.121) 0px 2px 8px 0px; */
         @media screen and (max-width: 1001px) {

@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import Content from './components/Context'
 import BottomNav from './components/BottomNav'
 import MobileCateogry from './components/MobileCateogry'
+import SingleVideoPage from './components/SingleVideoPage'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/type/:type' element={<Content />} />
           <Route path='/mobile/category/type/:type' element={<Content />} />
           <Route path='/mobile/category' element={<MobileCateogry />} />
+          <Route path='/single-video-page/video/:videoID' element={<SingleVideoPage />} />
         </Routes>
       </WholeHome>
       <BottomNav />
