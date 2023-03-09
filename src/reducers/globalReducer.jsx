@@ -26,6 +26,19 @@ export const videosReducer = (state, action) => {
                 searchQuery: action.payload
             }
 
+        case "SINGLE_DATA":
+            return {
+                ...state,
+                isLoading: false,
+                singlePage: action.payload
+            }
+        case "UPDATE_VIDEO_ID":
+            return {
+                ...state,
+                isLoading: false,
+                singleVideoID: action.payload
+            }
+
         default:
             return state
     }

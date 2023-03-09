@@ -16,7 +16,9 @@ export const GlobalProvider = ({ children }) => {
         isLoading: false,
         isError: false,
         errorMsg: "",
-        searchQuery: "popular"
+        searchQuery: "popular",
+        singleVideoID: "fM_zZ61GmOk",
+        singlePage: {}
     }
 
 
@@ -25,6 +27,7 @@ export const GlobalProvider = ({ children }) => {
 
 
     const [vState, vDispatch] = useReducer(videosReducer, videosState)
+    const [single, setSingle] = useState({})
 
 
 
@@ -32,10 +35,11 @@ export const GlobalProvider = ({ children }) => {
 
 
     let BASE_URL = 'https://youtube-v3-alternative.p.rapidapi.com/search';
+    let SINGLE_BASE_URL = 'https://youtube-v3-alternative.p.rapidapi.com/video';
 
 
 
-    const [first, setFirst] = useState("Bano")
+
 
 
     const getData = async (EXTRA) => {
@@ -80,7 +84,8 @@ export const GlobalProvider = ({ children }) => {
             const fetch = await axios.get(`${BASE_URL}`, options);
             let res = await fetch.data.data;
             vDispatch({ type: "VIDEOS_DATA", payload: res });
-            console.log(res);
+
+            // console.log(res);
 
         } catch (error) {
             vDispatch({ type: "VIDEOS_ERROR", payload: error.response.data.message });
@@ -89,18 +94,30 @@ export const GlobalProvider = ({ children }) => {
     }
 
 
+    const getSingleVideoData = (EXTRA) => {
+        vDispatch({ type: "VIDEOS_LOADING" });
 
 
-    useEffect(() => {
+        const options = {
+            url: SINGLE_BASE_URL,
+            params: { id: EXTRA },
+            headers: {
+                'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
+                'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
+            }
+        };
 
+        axios.get(SINGLE_BASE_URL, options).then((response) => {
+            setSingle(response)
+            // console.log(response.data)
+            setSingle({ ...response.data })
+        }).catch((e) => {
+            console.log(e);
+        })
 
+    }
 
-
-        // getData("trending");
-    }, [])
-
-
-    return <GlobalContext.Provider value={{ getData, ...vState, vDispatch, isDarkMode }}>{children}</GlobalContext.Provider>
+    return <GlobalContext.Provider value={{ getData, ...vState, vDispatch, isDarkMode, getSingleVideoData, single }}>{children}</GlobalContext.Provider>
 }
 
 export const useGlobalContext = () => {
