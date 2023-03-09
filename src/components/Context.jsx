@@ -10,10 +10,13 @@ import ResponseError from './ResponseError';
 function Content() {
 
     let { type } = useParams();
-    const { getData, searchQuery, currVideos, isLoading, isError, errorMsg } = useGlobalContext();
+    const { getData, searchQuery, currVideos, isLoading, isError, errorMsg, vDispatch } = useGlobalContext();
 
     useEffect(() => {
         getData(`${searchQuery}`);
+        vDispatch({ type: "UPDATE_TYPE", payload: type })
+
+
     }, [searchQuery])
 
     if (isLoading) {
@@ -24,6 +27,7 @@ function Content() {
     }
 
 
+
     return (
         <WholeContent>
             {type === "explore" ? null :
@@ -32,7 +36,7 @@ function Content() {
             <Grid>
                 {
                     currVideos === undefined ? <h1>FUCK</h1> : currVideos.map((video, i) => {
-                        return <VideoCard key={i} videoInfo={video.snippet} />
+                        return <VideoCard key={i} videoInfo={video} />
                     })
                 }
             </Grid>

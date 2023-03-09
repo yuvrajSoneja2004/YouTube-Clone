@@ -1,19 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 function VideoCard({ videoInfo }) {
+
+
+
+
     return (
         <Card>
-            <img src={videoInfo.thumbnails.medium.url} alt="mk" />
-            <div>
-                <strong>{videoInfo.title.slice(0, 80)}...</strong>
-                <br />
-
-            </div>
+            <img src={videoInfo.thumbnail[0].url} alt="mk" />
             <ChannelDetails>
-                <span>Channel: </span><PathLink to={`/channel/${videoInfo.channelId}`}>{videoInfo.channelTitle}</PathLink>
+                <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" />
+                {/* <img src={videoInfo.channelThumbnail[0].url} /> */}
+                <Mor>
+                    <strong>{videoInfo.title.slice(0, 80)}...</strong>
+                    <PathLink to={`/channel/${videoInfo.channelId}`}>{videoInfo.channelTitle}</PathLink>
+
+                    <Views>
+                        <span>{videoInfo.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views</span>
+                        <span>•</span>
+                        <span>{videoInfo.publishedText}</span>
+                    </Views>
+
+
+                </Mor>
+
+
             </ChannelDetails>
+
+
         </Card>
     )
 }
@@ -25,7 +41,7 @@ const Card = styled.div`
     border-radius: 20px;
     min-height: 250px;
 
-    box-shadow: rgba(99, 99, 99, 0.121) 0px 2px 8px 0px;
+    /* box-shadow: rgba(99, 99, 99, 0.121) 0px 2px 8px 0px; */
         @media screen and (max-width: 1001px) {
             width: 270px;
         }
@@ -42,20 +58,46 @@ const Card = styled.div`
     strong {
         /* padding-left: 10px;
         padding-top: 10px; */
-        font-size: 14px;
+        font-size: 12px;
     }
-    div {
-        padding: 16px;
+`
+
+const Mor = styled.div`
+     
+        display: flex;
+        flex-direction: column;
+    
+`
+
+const Views = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: -8px;
+    span {
+        font-size: 12px;
     }
 `
 
 const PathLink = styled(Link)`
     text-decoration: none;
     color: black;
+    font-weight: 200;
+    font-size: 12px;
+    margin: 10px 0;
 `
 
 const ChannelDetails = styled.div`
-    
+
+        display: flex;
+        padding: 16px;
+        padding-left: 0;
+        align-items: flex-start;
+        gap: 10px;
+    img {
+        width: 40px;
+        border-radius: 50%;
+    }
     
 `
 export default VideoCard

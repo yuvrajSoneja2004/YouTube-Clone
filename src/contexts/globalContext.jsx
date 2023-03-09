@@ -16,7 +16,7 @@ export const GlobalProvider = ({ children }) => {
         isLoading: false,
         isError: false,
         errorMsg: "",
-        searchQuery: ""
+        searchQuery: "popular"
     }
 
 
@@ -31,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
 
 
 
-    let BASE_URL = 'https://youtube-v31.p.rapidapi.com/search';
+    let BASE_URL = 'https://youtube-v3-alternative.p.rapidapi.com/search';
 
 
 
@@ -40,24 +40,45 @@ export const GlobalProvider = ({ children }) => {
 
     const getData = async (EXTRA) => {
         vDispatch({ type: "VIDEOS_LOADING" });
+
+        // Deprecated 
+
+        // const options = {
+        //     url: BASE_URL,
+        //     params: {
+        //         q: EXTRA,
+        //         part: 'snippet,id',
+        //         regionCode: 'US',
+        //         maxResults: '50',
+        //         order: 'date'
+        //     },
+        //     headers: {
+        //         'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
+        //         'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+        //     }
+        // };
+
+
+        // const options = {
+        //     url: BASE_URL,
+        //     params: { query: EXTRA, geo: 'US', lang: 'en' },
+        //     headers: {
+        //         'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
+        //         'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
+        //     }
+        // };
+
         const options = {
             url: BASE_URL,
-            params: {
-                q: EXTRA,
-                part: 'snippet,id',
-                regionCode: 'US',
-                maxResults: '50',
-                order: 'date'
-            },
+            params: { query: EXTRA, geo: 'US', lang: 'en' },
             headers: {
-                'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
-                'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+                'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+                'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
             }
         };
-
         try {
             const fetch = await axios.get(`${BASE_URL}`, options);
-            let res = await fetch.data.items;
+            let res = await fetch.data.data;
             vDispatch({ type: "VIDEOS_DATA", payload: res });
             console.log(res);
 
@@ -75,7 +96,7 @@ export const GlobalProvider = ({ children }) => {
 
 
 
-        getData("");
+        // getData("trending");
     }, [])
 
 

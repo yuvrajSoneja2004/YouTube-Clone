@@ -12,11 +12,6 @@ import PodcastIcon from '../assets/podcast_icon.svg';
 
 export const categoryData = [
     {
-        icon: TrendingIcon,
-        title: "trending",
-        color: "#DF2E38"
-    },
-    {
         icon: EducationIcon,
         title: 'education',
         color: "#5D9C59"
