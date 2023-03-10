@@ -16,6 +16,7 @@ function Content() {
     useEffect(() => {
         getData(`${searchQuery}`);
         vDispatch({ type: "UPDATE_TYPE", payload: type })
+        document.title = `YourTube (${currVideos.length}) - ${type[0].toUpperCase() + type.substring(1)}`
 
 
     }, [searchQuery])

@@ -82,23 +82,23 @@ export const GlobalProvider = ({ children }) => {
         // };
 
 
-        // const options = {
-        //     url: BASE_URL,
-        //     params: { query: EXTRA, geo: 'US', lang: 'en' },
-        //     headers: {
-        //         'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
-        //         'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
-        //     }
-        // };
-
         const options = {
             url: BASE_URL,
             params: { query: EXTRA, geo: 'US', lang: 'en' },
             headers: {
-                'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+                'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
             }
         };
+
+        // const options = {
+        //     url: BASE_URL,
+        //     params: { query: EXTRA, geo: 'US', lang: 'en' },
+        //     headers: {
+        //         'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+        //         'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
+        //     }
+        // };
         try {
             const fetch = await axios.get(`${BASE_URL}`, options);
             let res = await fetch.data.data;

@@ -12,6 +12,7 @@ import MobileCateogry from './components/MobileCateogry'
 import SingleVideoPage from './components/SingleVideoPage'
 import Navbara from './components/NavBar'
 import UserDetails from './components/UserDetails'
+import SingleChannel from './components/SingleChannel'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/type/:type' element={<Content />} />
+          <Route path='/channel/:channelID' element={<SingleChannel />} />
           <Route path='/mobile/category/type/:type' element={<Content />} />
           <Route path='/mobile/category' element={<MobileCateogry />} />
           <Route path='/user-details' element={<UserDetails />} />
