@@ -7,9 +7,7 @@ function VideoCard({ videoInfo }) {
 
     const navigate = useNavigate();
     return (
-        <Card onClick={() => {
-            navigate(`/single-video-page/video/${videoInfo.videoId}`)
-        }}>
+        <Card>
             <img src={videoInfo.thumbnail[0].url} alt="mk" />
             <ChannelDetails>
                 <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" />

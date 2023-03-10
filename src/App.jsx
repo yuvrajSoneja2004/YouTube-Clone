@@ -1,7 +1,5 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import NavBar from './components/NavBar'
-import { useGlobalContext } from './contexts/globalContext'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
@@ -12,12 +10,14 @@ import Content from './components/Context'
 import BottomNav from './components/BottomNav'
 import MobileCateogry from './components/MobileCateogry'
 import SingleVideoPage from './components/SingleVideoPage'
+import Navbara from './components/NavBar'
+import UserDetails from './components/UserDetails'
 
 function App() {
 
   return (
     <>
-      <NavBar />
+      <Navbara />
       <WholeHome>
         <SideBar />
 
@@ -30,6 +30,7 @@ function App() {
           <Route path='/type/:type' element={<Content />} />
           <Route path='/mobile/category/type/:type' element={<Content />} />
           <Route path='/mobile/category' element={<MobileCateogry />} />
+          <Route path='/user-details' element={<UserDetails />} />
           <Route path='/single-video-page/video/:videoID' element={<SingleVideoPage />} />
         </Routes>
       </WholeHome>

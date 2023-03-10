@@ -8,14 +8,14 @@ import '../../global.css'
 function SideBar() {
 
 
-    let { vDispatch, isDarkMode } = useGlobalContext();
+    let { vDispatch, themeState } = useGlobalContext();
     return (
-        <Wrapper>            {
+        <Wrapper style={themeState}>            {
             categoryData.map((cate, i) => {
                 return <CateLink key={i} to={`type/${cate.title}`} onClick={() => { vDispatch({ type: "UPDATE_TYPE", payload: cate.title }) }}>
                     <SideBarItem >
                         <img src={cate.icon} alt={cate.title} width={20} />
-                        <span>{cate.title}</span>
+                        <span style={themeState}>{cate.title}</span>
                     </SideBarItem>
                 </CateLink>
             })

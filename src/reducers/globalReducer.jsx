@@ -43,3 +43,30 @@ export const videosReducer = (state, action) => {
             return state
     }
 }
+
+// Theme Reducer
+
+export const themeReducer = (state, action) => {
+    switch (action.type) {
+        case "SET_DARK_MODE":
+            return {
+                isDarkMode: true,
+                background: "#121212 !important",
+                color: '#ffffff !important'
+            }
+
+        case "SET_LIGHT_MODE":
+            return {
+                isDarkMode: false,
+                background: "#ffffff !important",
+                color: 'black !important'
+
+
+
+            }
+
+
+        default:
+            return state;
+    }
+}

@@ -5,8 +5,8 @@ import './Loader.css';
 function Loader() {
     return (
         <WholeLoader>
-            <span class="loader"></span>
-        </WholeLoader>
+            <span className="loader"></span>
+        </WholeLoader >
     )
 }
 

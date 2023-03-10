@@ -17,7 +17,7 @@ function BottomNav() {
                 <div><BiCategory size={iconSize} /> <span>Category</span></div>
             </TheLink>
 
-            <TheLink to='/'>
+            <TheLink to='/user-details'>
                 <div><RiUser6Line size={iconSize} /> <span>Account</span></div>
             </TheLink>
 
@@ -62,7 +62,6 @@ const WholeBottomNav = styled.div`
 const TheLink = styled(Link)`
 color: black;
 text-decoration: none;
-padding:   100px 0;
     
 `
 export default BottomNav

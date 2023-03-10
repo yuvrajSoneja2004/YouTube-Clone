@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 
 import axios from 'axios';
-import { videosReducer } from "../reducers/globalReducer";
+import { themeReducer, videosReducer } from "../reducers/globalReducer";
 
 
 const GlobalContext = createContext();
@@ -21,8 +21,13 @@ export const GlobalProvider = ({ children }) => {
         singlePage: {}
     }
 
+    let initialThemeState = {
 
-    const [isDarkMode, setIsDarkMode] = useState(true)
+        background: "#ffffff !important",
+        color: '#000 !important'
+    }
+
+
 
 
 
@@ -39,7 +44,21 @@ export const GlobalProvider = ({ children }) => {
 
 
 
+    // Theme
+    const [themeState, themeDispatch] = useReducer(themeReducer, initialThemeState)
 
+    const handleDarkMode = () => {
+        if (!themeState.isDarkMode) {
+            themeDispatch({ type: "SET_DARK_MODE" });
+            console.log("TRUE")
+        }
+        else {
+            themeDispatch({ type: "SET_LIGHT_MODE" });
+            console.log("FLASE")
+
+
+        }
+    }
 
 
     const getData = async (EXTRA) => {
@@ -117,7 +136,7 @@ export const GlobalProvider = ({ children }) => {
 
     }
 
-    return <GlobalContext.Provider value={{ getData, ...vState, vDispatch, isDarkMode, getSingleVideoData, single }}>{children}</GlobalContext.Provider>
+    return <GlobalContext.Provider value={{ getData, ...vState, vDispatch, getSingleVideoData, single, themeState, handleDarkMode }}>{children}</GlobalContext.Provider>
 }
 
 export const useGlobalContext = () => {

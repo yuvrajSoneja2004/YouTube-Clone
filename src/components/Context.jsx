@@ -10,7 +10,8 @@ import ResponseError from './ResponseError';
 function Content() {
 
     let { type } = useParams();
-    const { getData, searchQuery, currVideos, isLoading, isError, errorMsg, vDispatch } = useGlobalContext();
+    const { getData, searchQuery, currVideos, isLoading, isError, errorMsg, vDispatch, themeState } = useGlobalContext();
+
 
     useEffect(() => {
         getData(`${searchQuery}`);
@@ -29,7 +30,7 @@ function Content() {
 
 
     return (
-        <WholeContent>
+        <WholeContent style={themeState}>
             {type === "explore" ? null :
                 <ContentType>New <span>{type}</span> Videos</ContentType>
             }

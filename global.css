@@ -8,11 +8,12 @@
 
 }
 
-.root {
-    /* position: initial;
-    z-index: -2; */
-}
 
 .active {
     color: red !important;
+}
+
+.btn-primary {
+    background-color: #fff !important;
+    border: none;
 }
