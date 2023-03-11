@@ -5,11 +5,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SiteLogo from '../assets/logo.png'
-import { FiSun } from 'react-icons/fi'
+// import { FiSun } from 'react-icons/fi'
 import { useGlobalContext } from '../contexts/globalContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { ImSearch } from 'react-icons/im'
 
 
 function Navbara() {
@@ -40,6 +41,9 @@ function Navbara() {
 
                     </Nav>
                     <Nav>
+                        <SearchLink to='/search'>
+                            <SearchIcon />
+                        </SearchLink>
 
                         {
                             isAuthenticated === false ? <Nav.Link onClick={() => {
@@ -94,6 +98,17 @@ h2 {
 span {
     color: #FF0000;
 }
+`
+
+const SearchIcon = styled(ImSearch)`
+    margin-top: 5px;
+    font-size: 17px;
+`
+const SearchLink = styled(Link)`
+    margin-top: 7px;
+    font-size: 17px;
+    margin-right: 20px;
+    color: black;
 `
 const SignUpBtn = styled.button`
     border: none;

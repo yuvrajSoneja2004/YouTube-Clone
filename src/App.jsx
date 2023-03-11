@@ -13,6 +13,7 @@ import SingleVideoPage from './components/SingleVideoPage'
 import Navbara from './components/NavBar'
 import UserDetails from './components/UserDetails'
 import SingleChannel from './components/SingleChannel'
+import Searchpage from './components/Searchpage'
 
 function App() {
 
@@ -26,8 +27,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
+          <Route path='/search' element={<Searchpage />} />
           <Route path='/type/:type' element={<Content />} />
           <Route path='/channel/:channelID' element={<SingleChannel />} />
           <Route path='/mobile/category/type/:type' element={<Content />} />

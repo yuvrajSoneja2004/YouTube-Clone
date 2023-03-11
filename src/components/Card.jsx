@@ -113,7 +113,6 @@ const PathLink = styled(Link)`
     font-weight: 200;
     font-size: 12px;
     margin: 10px 0;
-    z-index: 999;
 `
 
 const ChannelDetails = styled.div`
