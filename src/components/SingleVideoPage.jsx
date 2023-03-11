@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../contexts/globalContext';
 import { RxVideo } from 'react-icons/rx'
 import { AiOutlineEye } from 'react-icons/ai'
+import { MdSystemUpdateAlt } from 'react-icons/md'
 
 function SingleVideoPage() {
 
@@ -65,14 +66,14 @@ function SingleVideoPage() {
 
                             <DRow>
                                 <VideoIcon />
-                                <h1>{first.title}</h1>
+                                <h2>{first.title}</h2>
                             </DRow>
                             <DRow>
                                 <DurationIcon />
                                 <h4>{first.viewCount}</h4>
                             </DRow>
                             <DRow>
-                                <VideoIcon />
+                                <UploadDate />
                                 <h4>{first.uploadDate}</h4>
                             </DRow>
                         </>
@@ -94,16 +95,29 @@ const SinglePage = styled.div`
     flex-direction: column;
     align-items: flex-start;
     margin-left: 60px;
+    padding: 20px;
+    @media screen and (max-width:467px) {
+        padding: 5px;
+        margin-left: 5px;
+    }
 
    
 `
 
 const VideoIcon = styled(RxVideo)`
-    
+    color: #ff0000;
     font-size: 30px;
 `
 
 const DurationIcon = styled(AiOutlineEye)`
+    font-size: 30px;
+    color: #ff0000;
+
+
+`
+const UploadDate = styled(MdSystemUpdateAlt)`
+    color: #ff0000;
+
     font-size: 30px;
 `
 
@@ -113,10 +127,21 @@ align-items: center;
 gap: 15px;
 margin: 20px 0;
 
-h1 {
+
+h2 {
     margin: 0 !important;
+    @media screen and (max-width:467px) {
+    
+    font-size: 15px;
+
+}
 }h4 {
     margin: 0 !important;
+    @media screen and (max-width:467px) {
+    
+    font-size: 15px;
+
+}
 }
 `
 
