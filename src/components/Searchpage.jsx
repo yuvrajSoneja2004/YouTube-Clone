@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import axios from 'axios'
 import VideoCard from './Card';
+import Loader from './Loader';
 
 
 function Searchpage() {
@@ -57,8 +58,9 @@ function Searchpage() {
                             }
                         </>
                     ) : (
-                        <>
-                        </>
+                        <StaticSearch>
+                            <h2>Search something to get result here.</h2>
+                        </StaticSearch>
                     )
                 }
             </Grid>
@@ -78,6 +80,10 @@ const SearchInput = styled.div`
         width: 50%;
         display: flex;
         align-items: center;
+
+        @media screen and (max-width: 586px) {
+            width: 96%;
+        }
         input {
             width: 100%;
         border-top-left-radius: 20px;
@@ -102,7 +108,12 @@ const SearchInput = styled.div`
         border: 1px solid lightgray;
 
         }
+
+
+
 `
+
+
 const Grid = styled.div`
  padding: 40px;
     min-height: 80%;
@@ -126,6 +137,15 @@ const Grid = styled.div`
 const SearchIcon = styled(ImSearch)`
 margin-left: 10px;
 font-size: 20px;
+
+`
+
+
+const StaticSearch = styled.div`
+text-align: center;
+/* width: 100%; */
+position: absolute;
+padding: 15px;
 
 `
 export default Searchpage

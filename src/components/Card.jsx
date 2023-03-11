@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGlobalContext } from '../contexts/globalContext';
 import Loader from './Loader';
+import ErrorImage from '../assets/thumb_not_found.jpg'
 
 function VideoCard({ videoInfo }) {
 
@@ -24,7 +25,13 @@ function VideoCard({ videoInfo }) {
                 currVideos ? (
                     <>
                         <Card>
-                            <img src={videoInfo.thumbnail[0].url} alt="mk" onClick={navigateToPath} />
+                            <img src={videoInfo.thumbnail[0].url} alt="mk" onClick={navigateToPath}
+
+                                onError={(e) => {
+                                    e.target.onerror = null; // prevent infinite loop
+                                    e.target.src = ErrorImage;
+                                }}
+                            />
                             <ChannelDetails >
                                 {/* <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" /> */}
                                 {/* <img src={videoInfo.channelThumbnail[0].url} /> */}
