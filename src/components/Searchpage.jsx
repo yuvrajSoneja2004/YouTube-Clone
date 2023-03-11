@@ -94,7 +94,6 @@ const SearchInput = styled.div`
         transition: .3s;
 
           &:focus {
-            outline: 2px solid lightgray;
             transition: .4s;
           }
         }

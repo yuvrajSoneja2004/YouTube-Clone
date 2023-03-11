@@ -19,6 +19,7 @@ function Navbara() {
     let { handleDarkMode, themeState } = useGlobalContext();
     let { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 
+
     useEffect(() => {
         console.log("USER", user);
         console.log("auth", isAuthenticated);
@@ -28,14 +29,14 @@ function Navbara() {
     return (
         <WholeNav collapseOnSelect expand="lg" style={themeState}>
             <Container>
-                <Navbar.Brand href="#home" style={themeState}>
+                <Navbar.Brand href="#home" style={themeState} collapseOnSelect expand="false">
                     <Logo>
                         <img src={SiteLogo} alt="siteLogo" width={40} />
 
                         <LogoLink href='#'><h2>Your<span>Tube</span></h2></LogoLink>
                     </Logo>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" className='custom-nav-toggle' />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
 

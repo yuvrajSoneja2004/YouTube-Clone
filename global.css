@@ -17,3 +17,9 @@
     background-color: #fff !important;
     border: none;
 }
+
+.custom-nav-toggle {
+    /* background-color: red; */
+    color: white;
+    border: none;
+}
