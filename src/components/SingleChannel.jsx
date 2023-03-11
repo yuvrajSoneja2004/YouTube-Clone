@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGlobalContext } from '../contexts/globalContext'
+import { TiTickOutline } from 'react-icons/ti';
+import { ImCross } from 'react-icons/im';
 import Loader from './Loader';
+// import Card from '../components/Card';
+import VideoCard from '../components/Card';
 
 function SingleChannel() {
 
@@ -34,8 +38,6 @@ function SingleChannel() {
         ])
     }
     useEffect(() => {
-        // document.title = `${first.meta.title} - YourTube`
-
 
         fetchData(channelID)
     }, [])
@@ -56,10 +58,39 @@ function SingleChannel() {
                     <>
                         <Banner src={first.meta.image.banner[4].url} alt={"j.u"} />
                         <ChannelDetails>
-                            <img src={first.meta.thumbnail[1].url} alt={first.meta.title} />
-                            <h4>{first.meta.title}</h4>
+                            <div>
+                                <Manage>
+                                    <img src={first.meta.thumbnail[1].url} alt={first.meta.title} />
+                                    <ChannelDet>
+                                        <h4>{first.meta.title}</h4>
+                                        <label>{first.meta.subscriberCount} Subscribers</label>
+                                    </ChannelDet>
+                                </Manage>
+                                <FamilyFriendlyBanner>
+                                    {
+                                        first.meta.isFamilySafe ? (
+                                            <MainFamily>
+                                                <CorrectIcon /><span>Family Friendly</span>
+                                            </MainFamily>
+                                        ) : (
+                                            <MainFamily>
+                                                <ImCross /><span>Not Family Friendly</span>
+                                            </MainFamily>
+                                        )
+                                    }
+                                </FamilyFriendlyBanner>
+                            </div>
                         </ChannelDetails>
-                        <ChannelVideos></ChannelVideos>
+                        <ChannelVideos>
+                            <h2>{first.meta.title}'s Videos</h2>
+                            <Grid>
+                                {
+                                    first.data.map((video, i) => {
+                                        return <VideoCard key={i} videoInfo={video} />
+                                    })
+                                }
+                            </Grid>
+                        </ChannelVideos>
                     </>
                 ) : <Loader />
             }
@@ -69,12 +100,85 @@ function SingleChannel() {
 
 
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+
+`;
+
+
+const Grid = styled.div`
+ min-height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    place-items: center;
+    @media screen and (max-width: 1438px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 873px) {
+        grid-template-columns: 1fr;
+    }
+     @media screen and (max-width: 489px) {
+        padding: 20px;
+    }
+
+`
+
+
+
+
 const Banner = styled.img`
         width: 100%;
         height: 200px;
         object-fit: cover;
 `;
-const ChannelDetails = styled.div``;
-const ChannelVideos = styled.div``;
+const ChannelDetails = styled.div`
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 7px;
+        }
+        padding:  0 80px;
+
+`;
+const ChannelVideos = styled.div`
+        padding:  0 80px;
+        margin-top: 70px;
+`;
+
+
+
+const ChannelDet = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-start !important;
+align-items: flex-start !important;
+`;
+
+
+
+const Manage = styled.div`
+display: flex;
+align-items: flex-start !important;
+gap: 10px;
+img {
+    border-radius: 50%;
+
+}
+h4 {
+        margin-top: 10px;
+}
+`;
+const CorrectIcon = styled(TiTickOutline)`
+    font-size: 30px;
+    fill: #90EE90;
+`;
+const MainFamily = styled.div`
+display: flex;
+align-items: center;
+`;
+
+const FamilyFriendlyBanner = styled.div`
+    
+`
 export default SingleChannel

@@ -1,35 +1,54 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { useGlobalContext } from '../contexts/globalContext';
+import Loader from './Loader';
 
 function VideoCard({ videoInfo }) {
 
+    useEffect(() => {
+        console.log(videoInfo)
+    }, [])
 
+    let { currVideos } = useGlobalContext();
     const navigate = useNavigate();
     return (
-        <Card>
-            <img src={videoInfo.thumbnail[0].url} alt="mk" />
-            <ChannelDetails>
-                <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" />
-                {/* <img src={videoInfo.channelThumbnail[0].url} /> */}
-                <Mor>
-                    <strong>{videoInfo.title.slice(0, 80)}...</strong>
-                    <PathLink to={`/channel/${videoInfo.channelId}`}>{videoInfo.channelTitle}</PathLink>
-
-                    <Views>
-                        <span>{videoInfo.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views</span>
-                        <span>•</span>
-                        <span>{videoInfo.publishedText}</span>
-                    </Views>
+        <>
+            {
 
 
-                </Mor>
+                currVideos ? (
+                    <>
+                        <Card>
+                            <img src={videoInfo.thumbnail[0].url} alt="mk" />
+                            <ChannelDetails>
+                                {/* <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" /> */}
+                                {/* <img src={videoInfo.channelThumbnail[0].url} /> */}
+                                <Mor>
+                                    <strong>{videoInfo.title.slice(0, 80)}...</strong>
+                                    <PathLink to={`/channel/${videoInfo.channelId}`}>{videoInfo.channelTitle}</PathLink>
+
+                                    <Views>
+                                        {/* <span>{videoInfo.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views</span> */}
+                                        <span>•</span>
+                                        <span>{videoInfo.publishedText}</span>
+                                    </Views>
 
 
-            </ChannelDetails>
+                                </Mor>
 
 
-        </Card>
+                            </ChannelDetails>
+
+
+                        </Card>
+                    </>
+                ) : <h1>WHy</h1>
+
+
+
+            }
+        </>
     )
 }
 
