@@ -82,7 +82,9 @@ function SingleChannel() {
                             </div>
                         </ChannelDetails>
                         <ChannelVideos>
-                            <h2>{first.meta.title}'s Videos</h2>
+                            <div>
+                                <h2>{first.meta.title}'s Videos</h2>
+                            </div>
                             <Grid>
                                 {
                                     first.data.map((video, i) => {
@@ -137,13 +139,33 @@ const ChannelDetails = styled.div`
             align-items: center;
             justify-content: space-between;
             margin-top: 7px;
+            @media screen and (max-width: 794px) {
+           flex-direction: column;
+           justify-content: center;
+           align-items: center !important;
         }
+        }
+       
         padding:  0 80px;
+       
 
 `;
 const ChannelVideos = styled.div`
         padding:  0 80px;
         margin-top: 70px;
+        @media screen and (max-width: 549px) {
+            padding: 20px;
+        }
+
+        h2 {
+            padding: 20px 0;
+        }
+
+        div {
+            @media screen and (max-width: 549px) {
+            text-align: center;
+        }
+        }
 `;
 
 
@@ -161,6 +183,7 @@ const Manage = styled.div`
 display: flex;
 align-items: flex-start !important;
 gap: 10px;
+
 img {
     border-radius: 50%;
 
