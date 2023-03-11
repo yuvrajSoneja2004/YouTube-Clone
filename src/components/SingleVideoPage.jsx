@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import { useGlobalContext } from '../contexts/globalContext';
+import { RxVideo } from 'react-icons/rx'
+import { AiOutlineEye } from 'react-icons/ai'
 
 function SingleVideoPage() {
 
@@ -52,15 +54,36 @@ function SingleVideoPage() {
         fetchData(videoID)
     }, [])
     return (
-        <SinglePage>
-            <div>
-                {/* <h1>{videoID}</h1> */}
-            </div>
+        <>
 
-            <h1>{first.title}</h1>
-            <p>Desc  here</p>
 
-        </SinglePage>
+            <SinglePage>
+
+                {
+                    first ? (
+                        <>
+
+                            <DRow>
+                                <VideoIcon />
+                                <h1>{first.title}</h1>
+                            </DRow>
+                            <DRow>
+                                <DurationIcon />
+                                <h4>{first.viewCount}</h4>
+                            </DRow>
+                            <DRow>
+                                <VideoIcon />
+                                <h4>{first.uploadDate}</h4>
+                            </DRow>
+                        </>
+                    ) : (
+                        <h1>Loading.</h1>
+                    )
+                }
+            </SinglePage>
+
+
+        </>
     )
 
 }
@@ -69,19 +92,32 @@ const SinglePage = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: 60px;
 
-    div {
-        width: 40%;
-        height: 500px;
-        border: 2px solid red;
+   
+`
 
-        img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-    }
+const VideoIcon = styled(RxVideo)`
+    
+    font-size: 30px;
+`
+
+const DurationIcon = styled(AiOutlineEye)`
+    font-size: 30px;
+`
+
+const DRow = styled.div`
+display: flex;
+align-items: center;
+gap: 15px;
+margin: 20px 0;
+
+h1 {
+    margin: 0 !important;
+}h4 {
+    margin: 0 !important;
+}
 `
 
 export default SingleVideoPage
