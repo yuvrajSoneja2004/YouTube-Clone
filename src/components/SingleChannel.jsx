@@ -2,16 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { useGlobalContext } from '../contexts/globalContext'
 import { TiTickOutline } from 'react-icons/ti';
 import { ImCross } from 'react-icons/im';
 import Loader from './Loader';
-// import Card from '../components/Card';
 import VideoCard from '../components/Card';
 
 function SingleChannel() {
 
-    const { isLoading } = useGlobalContext();
     let { channelID } = useParams();
 
     const [first, setfirst] = useState(null)
@@ -22,13 +19,12 @@ function SingleChannel() {
             url: 'https://youtube-v3-alternative.p.rapidapi.com/channel',
             params: { id: EXTRA },
             headers: {
-                'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
+                'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
             }
         }
         const [res1, res2] = await Promise.all([
             axios.request(options).then(function (response) {
-                console.log(response.data);
                 setTimeout(() => {
                     setfirst(response.data);
                 }, 4000);

@@ -22,11 +22,7 @@ function SingleVideoPage() {
         thumbnail: { url: "https://i.ytimg.com/vi_webp/QTKv9JSy25Y/maxresdefault.webp" }
     })
 
-    // useEffect(() => {
-    //     vDispatch({ type: "UPDATE_VIDEO_ID", payload: videoID })
-    //     getSingleVideoData(videoID)
-    //     console.log(videoID)
-    // }, [videoID])
+
 
 
     useEffect(() => {
@@ -37,13 +33,12 @@ function SingleVideoPage() {
                 url: 'https://youtube-v3-alternative.p.rapidapi.com/video',
                 params: { id: EXTRA },
                 headers: {
-                    'X-RapidAPI-Key': '6b72ba7c1bmsh78a0d051a825ed7p16de1ejsn42ebcacfb77a',
+                    'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
                     'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
                 }
             };
             const [res1, res2] = await Promise.all([
                 axios.request(options).then(function (response) {
-                    console.log(response.data);
                     setfirst(response.data);
                 }).catch(function (error) {
                     console.error(error);

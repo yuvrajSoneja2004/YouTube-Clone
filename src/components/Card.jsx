@@ -2,17 +2,14 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGlobalContext } from '../contexts/globalContext';
-import Loader from './Loader';
 import ErrorImage from '../assets/thumb_not_found.jpg'
 
 function VideoCard({ videoInfo }) {
 
-    useEffect(() => {
-        console.log(videoInfo)
-    }, [])
 
     let { currVideos } = useGlobalContext();
     const navigate = useNavigate();
+
 
     const navigateToPath = () => {
         navigate(`/single-video-page/video/${videoInfo.videoId}`)
@@ -33,14 +30,13 @@ function VideoCard({ videoInfo }) {
                                 }}
                             />
                             <ChannelDetails >
-                                {/* <img src={videoInfo.channelThumbnail[0] === undefined ? "" : videoInfo.channelThumbnail[0].url} alt="ha" /> */}
-                                {/* <img src={videoInfo.channelThumbnail[0].url} /> */}
+
                                 <Mor>
                                     <strong onClick={navigateToPath}>{videoInfo.title.slice(0, 80)}...</strong>
                                     <PathLink to={`/channel/${videoInfo.channelId}`}>{videoInfo.channelTitle}</PathLink>
 
                                     <Views>
-                                        {/* <span>{videoInfo.viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} views</span> */}
+
                                         <span>•</span>
                                         <span>{videoInfo.publishedText}</span>
                                     </Views>
@@ -76,7 +72,7 @@ const Card = styled.div`
         cursor: pointer;
     }
 
-    /* box-shadow: rgba(99, 99, 99, 0.121) 0px 2px 8px 0px; */
+
         @media screen and (max-width: 1001px) {
             width: 270px;
         }
@@ -86,13 +82,10 @@ const Card = styled.div`
         }
     img {
         border-radius: 13px;
-        /* border-top-right-radius: 20px; */
         width: 100%;
         height:70%;
     }
     strong {
-        /* padding-left: 10px;
-        padding-top: 10px; */
         font-size: 12px;
     }
 `
